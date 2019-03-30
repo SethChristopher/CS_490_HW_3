@@ -11,7 +11,7 @@ namespace CS_490_HW_3
         private Node[] nodeHeap;
         private int size;
         private int maxSize;
-        private bool heaping;
+        public bool heaping;
 
         public MinHeap(int maxSize)
         {
@@ -19,6 +19,15 @@ namespace CS_490_HW_3
             this.size = 0;
             nodeHeap = new Node[this.maxSize + 1];
             nodeHeap[0] = new Node();
+        }
+
+        public bool isEmpty()
+        {
+            if (size == 0)
+            {
+                return true;
+            }
+            else return false;
         }
 
         public int length()
@@ -109,8 +118,7 @@ namespace CS_490_HW_3
         }
 
         public void insert(Node element)
-        {
-            element = new Node();
+        {            
             nodeHeap[++size] = element;
 
             int current = size;
@@ -132,7 +140,7 @@ namespace CS_490_HW_3
         }
 
         // Function to remove and return the minimum 
-        // element from the he
+        // element from the heap
         public Node remove()
         {
             Node popped = nodeHeap[0];

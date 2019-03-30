@@ -11,14 +11,36 @@ namespace CS_490_HW_3
         static void Main(string[] args)
         {
             MinHeap myHeap = new MinHeap(5);
-            CreateThread myCreation = new CreateThread();
-            ConsumeThread myConsumption = new ConsumeThread();
-            ConsumeThread myConsumption1 = new ConsumeThread();
+            CreateThread create = new CreateThread();
+            ConsumeThread consume = new ConsumeThread();
+            Thread createThread= new Thread(() => {
+                if (!myHeap.heaping == false)
+                {
 
-            Thread Create = new Thread(() => myCreation.run(myHeap));
-            Create.Start();
-            Thread Consume = new Thread(() => myConsumption.run(myHeap));
-            Consume.Start();
+                }
+
+            });
+
+            Thread consumeThread = new Thread(() =>
+            {                
+                while (!myHeap.isEmpty())
+                {
+                    consume.run(myHeap);
+                }
+
+            });
+
+
+            createThread.Start();
+            consumeThread.Start();
+
+
+
+
+            createThread.Join();
+            consumeThread.Join();
+
+
         }
     }
 }

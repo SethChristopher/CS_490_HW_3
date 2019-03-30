@@ -15,7 +15,7 @@ namespace CS_490_HW_3
             {
                 // do work
                 //            monitor.wait();
-                if (!heap.isHeaping())
+                if (!heap.heaping)
                 {
                     myNode = heap.remove();
                     myNode.Execute();

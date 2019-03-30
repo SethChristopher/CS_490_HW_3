@@ -18,7 +18,7 @@ namespace CS_490_HW_3
         {
             try
             {
-                if (!heap.isHeaping())
+                if (!heap.heaping)
                 {
                     myNode = new Node();
                     heap.monitorInsert(myNode);

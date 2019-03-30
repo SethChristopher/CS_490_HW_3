@@ -17,7 +17,8 @@ namespace CS_490_HW_3
         {
             processID = myRand.Next(50000);
             Priority = myRand.Next(21);
-            timeSlice = myRand.Next(5000);
+            timeSlice = myRand.Next(3000);
+            Thread.Sleep(300);
         }
 
         public void Execute()
