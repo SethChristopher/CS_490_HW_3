@@ -28,7 +28,7 @@ namespace CS_490_HW_3
                 while (!stopped)
                 {
                     // do work
-                    //            monitor.wait();
+                    //monitor.wait();
                     if (!heap.isEmpty())
                     {
                         myNode = heap.remove();

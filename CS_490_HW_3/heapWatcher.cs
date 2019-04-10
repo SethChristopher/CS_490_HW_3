@@ -18,7 +18,7 @@ namespace CS_490_HW_3
         }
         public void run()
         {
-            Console.WriteLine("Who watches the Heapwatcher...,? who knows but heapWatcher started so bugger off you gonna cry? piss your pants maybe? maybe shit and cum??");
+            Console.WriteLine("Who watches the Heapwatcher...,? who knows but heapWatcher started ");
             while (myHeap.getSize() > 0)
             {
                 try
@@ -29,7 +29,7 @@ namespace CS_490_HW_3
                 {
                 }
             }
-            Console.WriteLine("HeapWatcher is exciting...!(?)");
+            Console.WriteLine("HeapWatcher is exiting...!(?)");
         }
     }
 }

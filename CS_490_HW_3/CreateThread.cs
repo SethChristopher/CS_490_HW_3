@@ -41,8 +41,8 @@ namespace CS_490_HW_3
                     {
                         //if (!heap.isFull())
                         //{
-                            Node x = new Node();
-                            heap.insert(x);
+                        Node x = new Node();
+                        heap.insert(x);
                         //}
 
                     }

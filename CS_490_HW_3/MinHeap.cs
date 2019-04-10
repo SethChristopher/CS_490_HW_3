@@ -11,7 +11,10 @@ namespace CS_490_HW_3
         private Node[] nodeHeap;
         private int size;
         private int maxSize;
+        private static readonly Object lockObj = new object();
+
         public bool heaping;
+
 
         public MinHeap(int maxSize)
         {
@@ -86,20 +89,6 @@ namespace CS_490_HW_3
             nodeHeap[fpos] = nodeHeap[spos];
             nodeHeap[spos] = tmp;
         }
-        private void monitorHeapify(int posit)
-        {
-            heaping = true;
-            minHeapify(posit);
-            heaping = false;
-        }
-
-        public void monitorInsert(Node element)
-        {
-            heaping = true;
-            insert(element);
-            heaping = false;
-        }
-
 
         // Function to heapify the node at pos 
         private void minHeapify(int pos)
@@ -138,14 +127,20 @@ namespace CS_490_HW_3
         }
 
         public void insert(Node element)
-        {            
-            nodeHeap[++size] = element;
-
-            int current = size;
-            while (nodeHeap[current].Priority < nodeHeap[parent(current)].Priority)
+        {
+            lock (lockObj)
             {
-                swap(current, parent(current));
-                current = parent(current);
+                if (size < maxSize)
+                {
+                    nodeHeap[++size] = element;
+
+                    int current = size;
+                    while (nodeHeap[current].Priority < nodeHeap[parent(current)].Priority)
+                    {
+                        swap(current, parent(current));
+                        current = parent(current);
+                    }
+                }
             }
         }
 
@@ -155,7 +150,7 @@ namespace CS_490_HW_3
         {
             for (int pos = (size / 2); pos >= 1; pos--)
             {
-                monitorHeapify(pos);
+                minHeapify(pos);
             }
         }
 
@@ -163,10 +158,14 @@ namespace CS_490_HW_3
         // element from the heap
         public Node remove()
         {
-            Node popped = nodeHeap[0];
-            nodeHeap[0] = nodeHeap[size--];
-            minHeapify(0);
-            return popped;
+            lock (lockObj)
+            {
+                Node popped = nodeHeap[0];
+                nodeHeap[0] = nodeHeap[size--];
+                minHeapify(0);
+                return popped;
+            }
+
         }
         public bool isHeaping()
         {
